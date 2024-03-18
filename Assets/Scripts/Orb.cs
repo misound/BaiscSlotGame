@@ -12,9 +12,9 @@ public class Orb : MonoBehaviour
     [Tooltip("類型")]
     public OrbsType type;
     private Image image;
-    [Tooltip("列")]
+    [Tooltip("我所在的列")]
     public int row;
-    [Tooltip("行")]
+    [Tooltip("我所在的行")]
     public int column;
     public float width = 120;
     public float height = 120;
