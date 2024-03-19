@@ -11,19 +11,14 @@ public class SlotController : MonoBehaviour
         get { return rows; }
     }
     [SerializeField] private Button startSpin;
+    public PriceMgr PriceMgr;
     private void Awake()
     {
         startSpin.onClick.AddListener(Spin);
     }
     void Start()
     {
-        for (int i = 0; i < rows.Length; i++)
-        {
-            if (rows[i].transform.localPosition.y == 0)
-            {
-                Debug.Log(rows[i].PriceName);
-            }
-        }
+
     }
 
     // Update is called once per frame
@@ -37,6 +32,7 @@ public class SlotController : MonoBehaviour
         {
             rows[i].isRolliing = true;
         }
-
+        PriceMgr.randPrice();
+        PriceMgr.stopLine();
     }
 }

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priceName: RockClimber
   priceSprite: {fileID: 21300000, guid: c701fba9a05b0d84fa630547253bf639, type: 3}
-  priceScore: 500
+  priceScore: 6

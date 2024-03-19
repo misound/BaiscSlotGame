@@ -36,8 +36,8 @@ public class PuzzleSystem : MonoBehaviour
             hasRemove = false;
             OrbCreate();
             OrbGroup();
-            OrbCombo();
-            OrbRemove();
+            //OrbCombo();
+            //OrbRemove();
         } while (hasRemove);
     }
     #region 生產珠子相關
@@ -74,7 +74,7 @@ public class PuzzleSystem : MonoBehaviour
                 orbs.Add(orb);
             }
         }
-        //連結上下左右的珠子
+        
         for (int index = 0; index < orbs.Count; index++)
         {
             //if式撇除四邊及角落的珠子連結
@@ -85,20 +85,22 @@ public class PuzzleSystem : MonoBehaviour
                 orbs[index].linkOrbs.Add(orbs[index + 1]);
 
             //如果當前珠子所在的列 != 版面最大列 - 1(不是最上面的情況)
-            if (orbs[index].row != rowCount - 1)
-                //則加入他上面(列)的鄰近珠子
-                orbs[index].linkOrbs.Add(orbs[index + columnCount]);
-
+            if (orbs[index].row != rowCount - 1 && orbs[index].column != columnCount - 1)
+                //則加入他右上面(列)的鄰近珠子
+                orbs[index].linkOrbs.Add(orbs[index + columnCount + 1]);
+            
             //如果當前珠子所在的行 != 版面最小行(不是最左邊的情況)
             if (orbs[index].column != 0)
                 //則加入他左邊(行)的鄰近珠子
                 orbs[index].linkOrbs.Add(orbs[index - 1]);
-
+            
             //如果當前珠子所在的列 != 版面最小列(不是最下面的情況)
-            if (orbs[index].row != 0)
-                //則加入他下面(列)的鄰近珠子
-                orbs[index].linkOrbs.Add(orbs[index - columnCount]);
+            if (orbs[index].row != 0 && orbs[index].column != columnCount - 1)
+                //則加入他右下面(列)的鄰近珠子
+                orbs[index].linkOrbs.Add(orbs[index - columnCount + 1]);
+            
         }
+        
     }
     /// <summary>
     /// 給予隨機珠子編號，並將編號帶入珠子類型中
@@ -234,6 +236,9 @@ public class PuzzleSystem : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// to do:若改為連線的話...
+    /// </summary>
     void OrbRemove()
     {
         //針對每一個珠子重設屬性。
@@ -258,7 +263,7 @@ public class PuzzleSystem : MonoBehaviour
             if (orb.type == Orb.OrbsType.Null)
             {
                 //往珠子的上方搜尋。
-                for (int index = orbs.IndexOf(orb); index <= columnCount * (rowCount - 1) + orb.column; index += columnCount)////(8)
+                for (int index = orbs.IndexOf(orb); index <= columnCount * (rowCount - 1) + orb.column; index += columnCount)
                 {
                     //當找到非Null屬性的珠子時。
                     if (orbs[index].type != Orb.OrbsType.Null)

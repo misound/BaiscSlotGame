@@ -5,17 +5,13 @@ using DG.Tweening;
 
 public class Row : MonoBehaviour
 {
-    [SerializeField] private string[] priceName;
-    public string[] PriceName
-    {
-        get { return priceName; }
-    }
+
     [SerializeField] public bool isRolliing;
     [SerializeField] private float rollSpeed = 5f;
     [SerializeField] private int randValue;
     [SerializeField] private int lastRoll;
     [SerializeField] private int rollAmount;
-    [SerializeField] public Price[] priceInRow;
+    [SerializeField] public List<Price> priceInRow;
     System.Random rand;
     void Start()
     {

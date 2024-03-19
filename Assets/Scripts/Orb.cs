@@ -41,7 +41,7 @@ public class Orb : MonoBehaviour
         image = GetComponent<Image>();
         //初始化
         ChangeImage();
-        transform.name = "orb" + row + column;
+        transform.name = "orb" + column + row ;
         //初始化珠子大小
         GetComponent<RectTransform>().sizeDelta = new Vector2(width, height);
     }

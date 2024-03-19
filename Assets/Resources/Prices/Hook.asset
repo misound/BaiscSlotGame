@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priceName: Hook
   priceSprite: {fileID: 21300000, guid: 00d66984ca7f0c84fa706742d1823e73, type: 3}
-  priceScore: 100
+  priceScore: 4

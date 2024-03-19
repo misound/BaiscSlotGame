@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priceName: SafeCap
   priceSprite: {fileID: 21300000, guid: 25632d0b72996994ab8c61517064142a, type: 3}
-  priceScore: 100
+  priceScore: 7

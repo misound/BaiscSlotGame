@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priceName: Pickaxe
   priceSprite: {fileID: 21300000, guid: 4066e34b260525646bc7337d93f8381c, type: 3}
-  priceScore: 50
+  priceScore: 5

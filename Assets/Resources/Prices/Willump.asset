@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priceName: Willump
   priceSprite: {fileID: 21300000, guid: d2df0da2d9acf4c428d07306e7e8db71, type: 3}
-  priceScore: 1000
+  priceScore: 8

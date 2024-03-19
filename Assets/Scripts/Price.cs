@@ -11,6 +11,8 @@ public class Price : MonoBehaviour
     {
         get { return priceScore; }
     }
+    [SerializeField] PriceMgr priceMgr;
+    public List<Price> prices;
     //[SerializeField] private string myName;
     private void Start()
     {

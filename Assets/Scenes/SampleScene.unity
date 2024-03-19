@@ -210,6 +210,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 927317089}
     m_Modifications:
+    - target: {fileID: 2945755059656035838, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
     - target: {fileID: 3518702881668753889, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -258,6 +262,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rows (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4692619024076922684, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
+    - target: {fileID: 6682008824822355687, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
+    - target: {fileID: 8021331612838773707, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -276,6 +292,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 927317089}
     m_Modifications:
+    - target: {fileID: 2945755059656035838, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
     - target: {fileID: 3518702881668753889, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -324,6 +344,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rows (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4692619024076922684, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
+    - target: {fileID: 6682008824822355687, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
+    - target: {fileID: 8021331612838773707, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -483,7 +515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &559669775
 RectTransform:
   m_ObjectHideFlags: 0
@@ -549,6 +581,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 927317089}
     m_Modifications:
+    - target: {fileID: 2945755059656035838, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
     - target: {fileID: 3518702881668753889, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -593,6 +629,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rows (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4692619024076922684, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
+    - target: {fileID: 6682008824822355687, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
+    - target: {fileID: 8021331612838773707, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -712,7 +760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &927317089
 Transform:
   m_ObjectHideFlags: 0
@@ -1152,6 +1200,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 927317089}
     m_Modifications:
+    - target: {fileID: 2945755059656035838, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
     - target: {fileID: 3518702881668753889, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1200,6 +1252,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rows (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4692619024076922684, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
+    - target: {fileID: 6682008824822355687, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
+    - target: {fileID: 8021331612838773707, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1456,17 +1520,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039794230}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11506f9ebe877204a80fe6e09f1b57db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rows:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1798247122}
+  - {fileID: 1271283413}
+  - {fileID: 523858302}
+  - {fileID: 1536900022}
+  - {fileID: 64837505}
   startSpin: {fileID: 461720786}
+  PriceMgr: {fileID: 2039794233}
 --- !u!4 &2039794232
 Transform:
   m_ObjectHideFlags: 0
@@ -1489,7 +1555,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039794230}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efd19edc84cd1c84fa64ce179490be97, type: 3}
   m_Name: 
@@ -1508,7 +1574,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039794230}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55168288c4287f1499f673beefad96a2, type: 3}
   m_Name: 
@@ -1518,6 +1584,7 @@ MonoBehaviour:
   columnCount: 5
   orbs: []
   removeCount: 3
+  hasRemove: 0
   orbCombo: []
 --- !u!1001 &5252334281593820279
 PrefabInstance:
@@ -1527,6 +1594,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 927317089}
     m_Modifications:
+    - target: {fileID: 2945755059656035838, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
     - target: {fileID: 3518702881668753889, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1575,6 +1646,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rows
       objectReference: {fileID: 0}
+    - target: {fileID: 4692619024076922684, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
+    - target: {fileID: 6682008824822355687, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
+    - target: {fileID: 8021331612838773707, guid: 7a9425be830a8c049a6e6b297f7ca9a7, type: 3}
+      propertyPath: priceMgr
+      value: 
+      objectReference: {fileID: 2039794233}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
