@@ -1561,12 +1561,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priceSObjs: []
+  Prices: []
   Rows:
   - {fileID: 1798247122}
   - {fileID: 1271283413}
   - {fileID: 523858302}
   - {fileID: 1536900022}
   - {fileID: 64837505}
+  combo: []
 --- !u!114 &2039794234
 MonoBehaviour:
   m_ObjectHideFlags: 0

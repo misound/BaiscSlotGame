@@ -33,6 +33,5 @@ public class SlotController : MonoBehaviour
             rows[i].isRolliing = true;
         }
         PriceMgr.randPrice();
-        PriceMgr.stopLine();
     }
 }

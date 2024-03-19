@@ -36,7 +36,7 @@ public class PuzzleSystem : MonoBehaviour
             hasRemove = false;
             OrbCreate();
             OrbGroup();
-            //OrbCombo();
+            OrbCombo();
             //OrbRemove();
         } while (hasRemove);
     }
@@ -88,12 +88,12 @@ public class PuzzleSystem : MonoBehaviour
             if (orbs[index].row != rowCount - 1 && orbs[index].column != columnCount - 1)
                 //則加入他右上面(列)的鄰近珠子
                 orbs[index].linkOrbs.Add(orbs[index + columnCount + 1]);
-            
+            /*
             //如果當前珠子所在的行 != 版面最小行(不是最左邊的情況)
             if (orbs[index].column != 0)
                 //則加入他左邊(行)的鄰近珠子
                 orbs[index].linkOrbs.Add(orbs[index - 1]);
-            
+            */
             //如果當前珠子所在的列 != 版面最小列(不是最下面的情況)
             if (orbs[index].row != 0 && orbs[index].column != columnCount - 1)
                 //則加入他右下面(列)的鄰近珠子
@@ -121,28 +121,7 @@ public class PuzzleSystem : MonoBehaviour
         }
     }
     #endregion
-    /// <summary>
-    /// 尋找附近的珠子
-    /// </summary>
-    /// <param name="orb">當前珠子</param>
-    /// <param name="groupNum">當前群組編號</param>
-    void FindMembers(Orb orb, int groupNum)
-    {
-        //搜尋相連珠子
-        foreach (Orb linkOrb in orb.linkOrbs)
-        {
-            //當前珠子與相鄰珠子類型相同時，且未被加入到群組時
-            if (linkOrb.type == orb.type && !linkOrb.group)
-            {
-                //加入當前群組，且給予Group值
-                orbGroups[groupNum].Add(linkOrb);
-                linkOrb.group = true;
-                linkOrb.groupNum.text = groupNum.ToString();
-                //再次呼叫FindMembers，這次要找的是這個相鄰珠子的linkOrbs，直到所有相連同屬性的珠子都加入群組為止。
-                FindMembers(linkOrb, groupNum);
-            }
-        }
-    }
+    #region 珠子群組
     /// <summary>
     /// 在InitGrid之後執行，建立珠子群組
     /// </summary>
@@ -168,6 +147,56 @@ public class PuzzleSystem : MonoBehaviour
                 orb.groupNum.text = (groupNum).ToString();
                 //呼叫FindMembers函式，帶入參數為當前的珠子和編號。
                 FindMembers(orb, groupNum);
+            }
+        }
+    }
+    /// <summary>
+    /// 尋找附近的珠子
+    /// </summary>
+    /// <param name="orb">當前珠子</param>
+    /// <param name="groupNum">當前群組編號</param>
+    void FindMembers(Orb orb, int groupNum)
+    {
+        //搜尋相連珠子
+        foreach (Orb linkOrb in orb.linkOrbs)
+        {
+            //當前珠子與相鄰珠子類型相同時，且未被加入到群組時
+            if (linkOrb.type == orb.type && !linkOrb.group)
+            {
+                //加入當前群組，且給予Group值
+                orbGroups[groupNum].Add(linkOrb);
+                linkOrb.group = true;
+                linkOrb.groupNum.text = groupNum.ToString();
+                //再次呼叫FindMembers，這次要找的是這個相鄰珠子的linkOrbs，直到所有相連同屬性的珠子都加入群組為止。
+                FindMembers(linkOrb, groupNum);
+            }
+        }
+    }
+    #endregion
+    #region 消除珠子
+    /// <summary>
+    /// 珠子組合
+    /// </summary>
+    void OrbCombo()
+    {
+        //初始化群組數量orbCombo陣列，大小與總群組數相同
+        orbCombo = new Combo[orbGroups.Count];
+        //針對珠子總群組執行foreach迴圈。
+        foreach (List<Orb> orbGroup in orbGroups)
+        {
+            //宣告整數變數comboIndex，數值為當前群組編號。
+            int comboIndex = orbGroups.IndexOf(orbGroup);
+            //將當前combo的珠子屬性設定為當前群組屬性。
+            orbCombo[comboIndex].type = orbGroup[0].type;
+            //combo的珠子數量為0。
+            orbCombo[comboIndex].count = 0;
+            //接著針對當前群組執行foreach迴圈。
+            foreach (Orb orb in orbGroup)
+            {
+                //往右搜尋，呼叫FindRemoveOrb函式參數為珠子orb、搜尋方向為右方1、搜尋長度為該列最右邊的珠子、combo編號為comboIndex。
+                FindRemoveOrb(orb, 1, columnCount * (orb.row + 1) - 1, comboIndex);
+                //往上搜尋，呼叫FindRemoveOrb函式參數為珠子orb、搜尋方向為上方columnCount、搜尋長度為該行最上面的珠子、combo編號為comboIndex。
+                FindRemoveOrb(orb, columnCount, columnCount * (rowCount - 1) + orb.column, comboIndex);
             }
         }
     }
@@ -207,32 +236,6 @@ public class PuzzleSystem : MonoBehaviour
                 orbs[index].removed = true;
                 //修改Text，會顯示於執行結果中。
                 orbs[index].removeText.text = "C";
-            }
-        }
-    }
-    /// <summary>
-    /// 珠子組合
-    /// </summary>
-    void OrbCombo()
-    {
-        //初始化群組數量orbCombo陣列，大小與總群組數相同
-        orbCombo = new Combo[orbGroups.Count];
-        //針對珠子總群組執行foreach迴圈。
-        foreach (List<Orb> orbGroup in orbGroups)
-        {
-            //宣告整數變數comboIndex，數值為當前群組編號。
-            int comboIndex = orbGroups.IndexOf(orbGroup);
-            //將當前combo的珠子屬性設定為當前群組屬性。
-            orbCombo[comboIndex].type = orbGroup[0].type;
-            //combo的珠子數量為0。
-            orbCombo[comboIndex].count = 0;
-            //接著針對當前群組執行foreach迴圈。
-            foreach (Orb orb in orbGroup)
-            {
-                //往右搜尋，呼叫FindRemoveOrb函式參數為珠子orb、搜尋方向為右方1、搜尋長度為該列最右邊的珠子、combo編號為comboIndex。
-                FindRemoveOrb(orb, 1, columnCount * (orb.row + 1) - 1, comboIndex);
-                //往上搜尋，呼叫FindRemoveOrb函式參數為珠子orb、搜尋方向為上方columnCount、搜尋長度為該行最上面的珠子、combo編號為comboIndex。
-                FindRemoveOrb(orb, columnCount, columnCount * (rowCount - 1) + orb.column, comboIndex);
             }
         }
     }
@@ -279,4 +282,5 @@ public class PuzzleSystem : MonoBehaviour
             }
         }
     }
+    #endregion
 }
