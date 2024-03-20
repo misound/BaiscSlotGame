@@ -16,16 +16,6 @@ public class SlotController : MonoBehaviour
     {
         startSpin.onClick.AddListener(Spin);
     }
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     void Spin()
     {
         for (int i = 0; i < rows.Length; i++)

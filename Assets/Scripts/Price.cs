@@ -9,6 +9,7 @@ public class Price : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private int priceScore;
     public bool group = false;
+    public bool linked = false;
     public int PriceScore
     {
         get { return priceScore; }
@@ -28,7 +29,7 @@ public class Price : MonoBehaviour
     }
     public priceName PriceName;
     //[SerializeField] private string myName;
-    private void Start()
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
