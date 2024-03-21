@@ -215,7 +215,7 @@ public class PriceMgr : MonoBehaviour
         for (int i = 0; i < LinePriceGroup.Count; i++)
         {
             //若裡面的元素大於可連線數(最大5個)
-            if (LinePriceGroup[i].Count > 1)
+            if (LinePriceGroup[i].Count > 2)
             {
                 //加入該List<Price>到暫存的List<List<Price>>內
                 pricess.Add(LinePriceGroup[i]);

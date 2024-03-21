@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class SlotController : MonoBehaviour
 {
+    /* to do:
+     * 連按鈕
+     * 設賭注、獲勝、扣款則另外開
+     * 
+    */
     [SerializeField] private Row[] rows;
     public Row[] Rows 
     {
