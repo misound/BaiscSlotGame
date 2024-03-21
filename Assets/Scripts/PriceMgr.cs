@@ -4,13 +4,11 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//把它更名為PrizeSystem會比較好?
 public class PriceMgr : MonoBehaviour
 {
+    [Tooltip("獎品元素集合")]
     [SerializeField] private List<PriceSObj> priceSObjs;
-    public List<PriceSObj> PriceSObjs
-    {
-        get { return priceSObjs; }
-    }
     [Tooltip("所有Price的集合")]
     [SerializeField] private List<Price> Prices = new List<Price>();
     [Tooltip("本是將所有不同元素集合的集合體")]
@@ -32,8 +30,15 @@ public class PriceMgr : MonoBehaviour
 
     public GameObject linePrefab;
 
-    public int pause = 0;
-    public bool go;
+    public SlotController slotController;
+    [Tooltip("白癡按鈕決定變數")]
+    private int pause = 0;
+    private bool go;
+    [SerializeField] private int pricePrize = 10;
+    public Bet bet;
+
+    float slotTimer = 2f;
+    float timer = 0;
     private void Awake()
     {
         InstanPrice();
@@ -41,34 +46,14 @@ public class PriceMgr : MonoBehaviour
         //PriceCombo();
         //InsLine();
     }
-    public void Pause()
-    {
-        pause++;
-    }
     private void Update()
     {
-        if (pause == 0)
-        {
-            randPrice();
-        }
-        else if (pause == 1)
-        {
-            pause++;
-            go = true;
-        }
-        else if (pause == 3)
-        {
-            pause = 0;
-        }
-        if (go)
-        {
-            InstanPrice();
-            PriceCombo();
-            InsLine();
-            go = false;
-        }
+        DumbBtnSwitch();
     }
     #region 設定獎品資訊及設定清單
+    /// <summary>
+    /// 設定獎品資訊及設定清單
+    /// </summary>
     public void InstanPrice()
     {
         rand = new System.Random();
@@ -226,11 +211,15 @@ public class PriceMgr : MonoBehaviour
                 line.priceGroup = LinePriceGroup[i];
             }
         }
-
+        Debug.Log($"分數:{PriceComboSum()}");
 
     }
 
     #endregion
+    #region 隨機元素
+    /// <summary>
+    /// 隨機元素
+    /// </summary>
     public void randPrice()
     {
         for (int i = 0; i < Rows.Count; i++)
@@ -241,5 +230,71 @@ public class PriceMgr : MonoBehaviour
             }
         }
     }
+    #endregion
+    #region 怪怪的按鈕
+    /// <summary>
+    /// 白癡按鈕決定法
+    /// </summary>
+    void DumbBtnSwitch()
+    {
+        if (pause == 0)
+        {
+            randPrice();
+            timer += Time.deltaTime;
+        }
+        if (slotTimer < timer)
+        {
+            pause++;
+            go = true;
+        }
+        else if (pause == 2)
+        {
+            pause = 0;
+        }
+        if (go)
+        {
+            InstanPrice();
+            PriceCombo();
+            InsLine();
+            slotController.SumTheScore();
+            timer = 0;
+            go = false;
+        }
+    }
 
+    public void PressStart()
+    {
+        pause++;
+    }
+    #endregion
+    /// <summary>
+    /// 運算獎勵總和
+    /// </summary>
+    /// <returns>三連線以上的數字</returns>
+    public int PriceComboSum()
+    {
+        int sum = 0;
+        foreach(List<Price> prices in LinePriceGroup)
+        {
+
+            if (prices.Count > 2)
+            {
+                int MaxPriceCount = 0;
+                int score = 0;
+                MaxPriceCount = prices.Count;
+                while (MaxPriceCount != 0)
+                {
+                    MaxPriceCount--;
+                    score++;
+                }
+                sum += bet.BetPrize * (score * pricePrize);
+            }
+        }
+        sum /= 20;
+        return sum;
+    }
+    /* to do
+     * 
+     * 同步獎勵加總數字
+     */
 }

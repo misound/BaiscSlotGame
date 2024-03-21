@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class LineMgr : MonoBehaviour
 {
+
+    //動畫結束後自己關掉自己
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private LineRenderer getPriceLineRenderer;
     public List<Price> priceGroup;
     private void Awake()
     {
@@ -12,29 +15,25 @@ public class LineMgr : MonoBehaviour
     }
     void Start()
     {
-        //float priceX = Mathf.Abs(priceGroup[0].transform.position.x - priceGroup[1].transform.position.x);
+        //接收List內數量並等同於線的點
         lineRenderer.positionCount = priceGroup.Count;
-
+        getPriceLineRenderer.positionCount = priceGroup.Count;
+        //設置原有的點
         for (int i = 0; i < priceGroup.Count; i++)
         {
             lineRenderer.SetPosition(i, priceGroup[i].transform.position);
+            getPriceLineRenderer.SetPosition(i, priceGroup[i].transform.position);
         }
+        //間距
         float x = Mathf.Abs(lineRenderer.GetPosition(0).x - lineRenderer.GetPosition(1).x);
+        //若無五連線就新增點直到五個點都填滿
         for (int i = priceGroup.Count; i < 5; i++)
         {
-            lineRenderer.positionCount++;
-            lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(lineRenderer.GetPosition(i - 1).x + x, lineRenderer.GetPosition(i - 1).y));
-
+            getPriceLineRenderer.positionCount++;
+            getPriceLineRenderer.SetPosition(getPriceLineRenderer.positionCount - 1, 
+                new Vector3(getPriceLineRenderer.GetPosition(i - 1).x + x, 
+                getPriceLineRenderer.GetPosition(i - 1).y));
         }
-
-
-        /*
-         * to do: 
-         * 若未滿5個點，則補到5個點
-         * 而新增的點的位置 = 原本點與點的距離的水平變量 + 最後點的位置
-         * 且不能將最後一個點新增重複至補滿
-        */
-
     }
 
 }
