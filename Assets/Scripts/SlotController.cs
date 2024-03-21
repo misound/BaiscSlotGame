@@ -28,20 +28,22 @@ public class SlotController : MonoBehaviour
     public Bet bet;
     public PriceMgr priceMgr;
     private bool isDirty = false;
+    public AudioSource audioSource;
     private void Awake()
     {
         BetOneBtn.onClick.AddListener(BetOneBtn_OnClick);
         startSpin.onClick.AddListener(StartBtn_OnClick);
         BetBaxBtn.onClick.AddListener(BetBaxBtn_OnClick);
         DoubleBtn.onClick.AddListener(DoubleBtn_OnClick);
-        NoMoneyBtn.onClick.AddListener(DoubleBtn_OnClick);
+        NoMoneyBtn.onClick.AddListener(NoMoneyBtn_OnClick);
+        SumOfTicketTMP.text = priceMgr.PriceComboSum().ToString();
         isDirty = true;
     }
     private void Update()
     {
         playerCreditTMP.text = credit.CreditPoint.ToString();
         NumOfTicketTMP.text = bet.BetPrize.ToString();
-        SumOfTicketTMP.text = priceMgr.PriceComboSum().ToString();
+
     }
     private void StartBtn_OnClick()
     {
@@ -49,26 +51,31 @@ public class SlotController : MonoBehaviour
         {
             credit.DecreasePlayerCredit(bet.BetPrize);
         }
+        else if(credit.CreditPoint > 0)
+        {
+            credit.DecreasePlayerCredit(bet.BetPrize);
+        }
         else
         {
             poorGuyImage.SetActive(true);
+            audioSource.Play();
         }
 
         isDirty = true;
     }
     private void BetOneBtn_OnClick()
     {
-        bet.IncreaseBet();
+        bet.IncreaseBet(credit.CreditPoint);
         isDirty = true;
     }
     private void BetBaxBtn_OnClick()
     {
-        bet.IncreaseBetToMax();
+        bet.IncreaseBetToMax(credit.CreditPoint);
         isDirty = true;
     }
     private void DoubleBtn_OnClick()
     {
-        bet.LetBetDouble();
+        bet.LetBetDouble(credit.CreditPoint);
         isDirty = true;
     }
     private void NoMoneyBtn_OnClick()
@@ -78,6 +85,7 @@ public class SlotController : MonoBehaviour
     public void SumTheScore()
     {
         credit.IncreasePlayerCredit(priceMgr.PriceComboSum());
+        SumOfTicketTMP.text = priceMgr.PriceComboSum().ToString();
     }
     /* to do
      * 若是玩家點數不足minBet

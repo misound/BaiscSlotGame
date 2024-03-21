@@ -12,7 +12,7 @@ public class Bet : MonoBehaviour
     [SerializeField] private int maxBet;
     [SerializeField] private int minBet;
 
-    public void IncreaseBet()
+    public void IncreaseBet(int maxBet)
     {
         betPrize += betIncrease;
         if (betPrize > maxBet)
@@ -21,11 +21,11 @@ public class Bet : MonoBehaviour
         }
     }
 
-    public void IncreaseBetToMax()
+    public void IncreaseBetToMax(int maxBet)
     {
         betPrize = maxBet;
     }
-    public void LetBetDouble()
+    public void LetBetDouble(int maxBet)
     {
         betPrize *= 2;
         if (betPrize > maxBet)

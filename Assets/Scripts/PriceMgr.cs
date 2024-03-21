@@ -13,8 +13,6 @@ public class PriceMgr : MonoBehaviour
     [SerializeField] private List<Price> Prices = new List<Price>();
     [Tooltip("本是將所有不同元素集合的集合體")]
     [SerializeField] private List<List<Price>> priceGroup = new List<List<Price>>();
-    //[Tooltip("遊戲物件")]
-    //[SerializeField] private List<GameObject> prices;
     [Tooltip("列的集合")]
     [SerializeField] private List<Row> Rows;
     System.Random rand;
@@ -38,10 +36,14 @@ public class PriceMgr : MonoBehaviour
     public Bet bet;
 
     float slotTimer = 2f;
-    float timer = 0;
+    float timer = 1;
+
+    public AudioSource audioSource;
+    public AudioClip clip;
     private void Awake()
     {
         InstanPrice();
+        pause = 1;
         //PriceGroup();
         //PriceCombo();
         //InsLine();
@@ -54,7 +56,7 @@ public class PriceMgr : MonoBehaviour
     /// <summary>
     /// 設定獎品資訊及設定清單
     /// </summary>
-    public void InstanPrice()
+    private void InstanPrice()
     {
         rand = new System.Random();
         //載入SObj
@@ -124,7 +126,7 @@ public class PriceMgr : MonoBehaviour
     /// <summary>
     /// 第一列的元素設為List開頭，並向右查找是否有相同元素
     /// </summary>
-    public void PriceCombo()
+    private void PriceCombo()
     {
         /* 以struct來分群組及類型的作法
         combo = new priceCombo[priceGroup.Count];
@@ -192,7 +194,7 @@ public class PriceMgr : MonoBehaviour
     /// <summary>
     /// 生產賠付線
     /// </summary>
-    public void InsLine()
+    private void InsLine()
     {
         //新建一個List<List>
         List<List<Price>> pricess = new List<List<Price>>();
@@ -209,6 +211,7 @@ public class PriceMgr : MonoBehaviour
                 LineMgr line = temp.GetComponent<LineMgr>();
                 //分配List<Price>到遊戲物件上
                 line.priceGroup = LinePriceGroup[i];
+                audioSource.PlayOneShot(clip);
             }
         }
         Debug.Log($"分數:{PriceComboSum()}");
@@ -237,19 +240,24 @@ public class PriceMgr : MonoBehaviour
     /// </summary>
     void DumbBtnSwitch()
     {
-        if (pause == 0)
+        switch (pause)
         {
-            randPrice();
-            timer += Time.deltaTime;
+            case 0:
+                randPrice();
+                timer += Time.deltaTime;
+                break;
+            case 1:
+                break;
+            case 2:
+                pause = 0;
+                break;
+            default:
+                break;
         }
         if (slotTimer < timer)
         {
             pause++;
             go = true;
-        }
-        else if (pause == 2)
-        {
-            pause = 0;
         }
         if (go)
         {
@@ -274,7 +282,7 @@ public class PriceMgr : MonoBehaviour
     public int PriceComboSum()
     {
         int sum = 0;
-        foreach(List<Price> prices in LinePriceGroup)
+        foreach (List<Price> prices in LinePriceGroup)
         {
 
             if (prices.Count > 2)
@@ -293,8 +301,4 @@ public class PriceMgr : MonoBehaviour
         sum /= 20;
         return sum;
     }
-    /* to do
-     * 
-     * 同步獎勵加總數字
-     */
 }
