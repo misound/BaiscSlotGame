@@ -8,6 +8,7 @@ public class Price : MonoBehaviour
     [SerializeField] public PriceSObj priceSObj;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private int priceScore;
+    [SerializeField] public GameObject WinEffect;
     public bool group = false;
     public bool linked = false;
     public int PriceScore

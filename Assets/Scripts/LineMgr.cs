@@ -15,6 +15,15 @@ public class LineMgr : MonoBehaviour
     }
     void Start()
     {
+        SetPosOnLine();
+        foreach (Price price in priceGroup) 
+        {
+            price.WinEffect.SetActive(true);
+        }
+    }
+
+    void SetPosOnLine()
+    {
         //接收List內數量並等同於線的點
         lineRenderer.positionCount = priceGroup.Count;
         getPriceLineRenderer.positionCount = priceGroup.Count;
@@ -30,10 +39,9 @@ public class LineMgr : MonoBehaviour
         for (int i = priceGroup.Count; i < 5; i++)
         {
             getPriceLineRenderer.positionCount++;
-            getPriceLineRenderer.SetPosition(getPriceLineRenderer.positionCount - 1, 
-                new Vector3(getPriceLineRenderer.GetPosition(i - 1).x + x, 
+            getPriceLineRenderer.SetPosition(getPriceLineRenderer.positionCount - 1,
+                new Vector3(getPriceLineRenderer.GetPosition(i - 1).x + x,
                 getPriceLineRenderer.GetPosition(i - 1).y));
         }
     }
-
 }

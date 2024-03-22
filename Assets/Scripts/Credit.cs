@@ -9,6 +9,10 @@ public class Credit : MonoBehaviour
     {
         get { return creditPoint; }
     }
+    /// <summary>
+    /// 減少玩家點數
+    /// </summary>
+    /// <param name="Bets">賭注</param>
     public void DecreasePlayerCredit(int Bets)
     {
         creditPoint -= Bets;
@@ -17,6 +21,10 @@ public class Credit : MonoBehaviour
             creditPoint = 0;
         }
     }
+    /// <summary>
+    /// 增加玩家點數
+    /// </summary>
+    /// <param name="Price">連線獎勵</param>
     public void IncreasePlayerCredit(int Price)
     {
         creditPoint += Price;

@@ -18,12 +18,6 @@ public class Row : MonoBehaviour
         rand = new System.Random();
 
     }
-
-    // Update is called once per frame
-    private void FixedUpdate()
-    {
-
-    }
     public void Rolling()
     {
         randValue = rand.Next(1, 5);

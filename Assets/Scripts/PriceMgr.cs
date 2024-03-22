@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 //把它更名為PrizeSystem會比較好?
 public class PriceMgr : MonoBehaviour
@@ -40,6 +41,9 @@ public class PriceMgr : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip clip;
+
+    public UnityEvent unityEvent;
+    public UnityEvent unityEvent1;
     private void Awake()
     {
         InstanPrice();
@@ -163,7 +167,7 @@ public class PriceMgr : MonoBehaviour
     /// 檢查右列的元素並檢查是否連線
     /// </summary>
     /// <param name="price"></param>
-    /// <param name="groupNum"></param>
+    /// <param name="groupNum">群組編號</param>
     void checkRightRow(Price price, int groupNum)
     {
         //設定找到的次數
@@ -180,11 +184,6 @@ public class PriceMgr : MonoBehaviour
                 pricee.linked = true;
                 //該列被找到的元素數量+1(等同於已找到一個元素)
                 indexCount++;
-                for (int i = 0; i < LinePriceGroup[groupNum].Count; i++)
-                {
-                    Debug.Log(LinePriceGroup[groupNum][i].name);
-                }
-
                 //再次尋找此Price右列的元素，直到右列不存在或是右列沒有元素的狀態
                 checkRightRow(pricee, groupNum);
                 break;
@@ -245,6 +244,7 @@ public class PriceMgr : MonoBehaviour
             case 0:
                 randPrice();
                 timer += Time.deltaTime;
+                unityEvent.Invoke();
                 break;
             case 1:
                 break;
@@ -264,6 +264,7 @@ public class PriceMgr : MonoBehaviour
             InstanPrice();
             PriceCombo();
             InsLine();
+            unityEvent1.Invoke();
             slotController.SumTheScore();
             timer = 0;
             go = false;
@@ -275,6 +276,7 @@ public class PriceMgr : MonoBehaviour
         pause++;
     }
     #endregion
+    #region 獎勵總和
     /// <summary>
     /// 運算獎勵總和
     /// </summary>
@@ -301,4 +303,5 @@ public class PriceMgr : MonoBehaviour
         sum /= 20;
         return sum;
     }
+    #endregion
 }

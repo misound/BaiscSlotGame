@@ -43,17 +43,28 @@ public class SlotController : MonoBehaviour
     {
         playerCreditTMP.text = credit.CreditPoint.ToString();
         NumOfTicketTMP.text = bet.BetPrize.ToString();
-
     }
+    #region 按鈕連結
+    /// <summary>
+    /// 開始前，先進行點數的邏輯處理
+    /// </summary>
     private void StartBtn_OnClick()
     {
-        if(credit.CreditPoint >= bet.BetPrize)
+        if (credit.CreditPoint >= bet.BetPrize)
         {
             credit.DecreasePlayerCredit(bet.BetPrize);
+            priceMgr.PressStart();
         }
-        else if(credit.CreditPoint > 0)
+        else if (credit.CreditPoint < bet.BetPrize && credit.CreditPoint > 0)
+        {
+            bet.IncreaseBetToMax(credit.CreditPoint);
+            credit.DecreasePlayerCredit(bet.BetPrize);
+            priceMgr.PressStart();
+        }
+        else if (credit.CreditPoint > 0)
         {
             credit.DecreasePlayerCredit(bet.BetPrize);
+            priceMgr.PressStart();
         }
         else
         {
@@ -87,6 +98,7 @@ public class SlotController : MonoBehaviour
         credit.IncreasePlayerCredit(priceMgr.PriceComboSum());
         SumOfTicketTMP.text = priceMgr.PriceComboSum().ToString();
     }
+    #endregion
     /* to do
      * 若是玩家點數不足minBet
      * 則不能再操作，例如加入一張圖片擋住所有東西

@@ -11,7 +11,10 @@ public class Bet : MonoBehaviour
     [SerializeField] private int betIncrease;
     [SerializeField] private int maxBet;
     [SerializeField] private int minBet;
-
+    /// <summary>
+    /// 糤戒猔璝禬筁程碞跑Θ程戒猔
+    /// </summary>
+    /// <param name="maxBet">程戒猔(硄盽產羆翴计)</param>
     public void IncreaseBet(int maxBet)
     {
         betPrize += betIncrease;
@@ -20,11 +23,22 @@ public class Bet : MonoBehaviour
             betPrize = minBet;
         }
     }
-
+    /// <summary>
+    /// 糤戒猔程璝戒猔 < 0 玥程
+    /// </summary>
+    /// <param name="maxBet">程戒猔(硄盽產羆翴计)</param>
     public void IncreaseBetToMax(int maxBet)
     {
         betPrize = maxBet;
+        if (maxBet <= 0)
+        {
+            betPrize = minBet;
+        }
     }
+    /// <summary>
+    /// 猔蛮璝禬筁程碞跑Θ程戒猔
+    /// </summary>
+    /// <param name="maxBet">程戒猔(硄盽產羆翴计)</param>
     public void LetBetDouble(int maxBet)
     {
         betPrize *= 2;
